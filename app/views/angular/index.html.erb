@@ -1,0 +1,23 @@
+<div data-ng-app="NotesApp">
+  <h1>Notes</h1>
+  <div data-ng-controller="NotesCtrl" data-ng-init="index()">
+    <input type="text" data-ng-model="newNote.note_body">
+    <button data-ng-click="create(newNote)">Save New Note</button>
+    <div data-ng-repeat="note in notes">
+      <p data-ng-hide="note.editing">{{note.note_body}}</p>
+      <button data-ng-click="note.editing = true">Edit</button>
+      <button data-ng-click="note.deleteConfirm = true" data-ng-hide="note.deleteConfirm">Delete</button>
+
+      <div data-ng-show="note.editing">
+        <input type="text" data-ng-model="note.note_body">
+        <button data-ng-click="update(note)">Save</button>
+        <button data-ng-click="note.editing = false">Cancel</button>
+      </div>
+
+      <div data-ng-show="note.deleteConfirm">
+        <button data-ng-click="destroy(note)">Confirm</button>
+        <button data-ng-click="note.deleteConfirm = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
